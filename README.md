@@ -61,19 +61,6 @@ Each service runs in its own Deployment with an associated ClusterIP Service for
 
 ---
 
-## 🔄 Suggested Improvements
-
-| Best Practice                 | Benefit                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------ |
-| **Namespaces**                | Isolate environments like dev, staging, prod to reduce risk of conflicts |
-| **RBAC (Role & RoleBinding)** | Enforce least privilege access to improve cluster security               |
-| **ConfigMaps & Secrets**      | Externalize configuration for flexibility and separation of concerns     |
-| **Rolling Updates**           | Ensure zero-downtime deployments with controlled pod replacement         |
-| **Monitoring & Logging**      | Integrate Prometheus + Grafana for resource and health insights          |
-| **Node-by-Node Upgrade**      | Maintain high availability during infrastructure updates                 |
-
----
-
 ## 📁 Structure Summary
 
 ```
