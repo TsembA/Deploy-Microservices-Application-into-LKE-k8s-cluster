@@ -1,6 +1,6 @@
-# 🛍️ Microservices Demo on Kubernetes
+# 🛍️ Microservices Demo on Kubernetes (LKE)
 
-This project deploys a fully containerized **e-commerce microservices application** into a Kubernetes cluster using only native YAML manifests. It replicates a production-grade cloud-native environment with independent services communicating over gRPC and HTTP.
+This project deploys a fully containerized **e-commerce microservices application** into a **Linode Kubernetes Engine (LKE)** cluster using native YAML manifests. It replicates a production-grade cloud-native environment with independent services communicating over gRPC and HTTP.
 
 Based on the official [Google Online Boutique Demo](https://github.com/GoogleCloudPlatform/microservices-demo), it demonstrates:
 - Kubernetes-native deployment of microservices
@@ -29,38 +29,47 @@ Based on the official [Google Online Boutique Demo](https://github.com/GoogleClo
 
 ---
 
-## 🚀 How to Deploy
+## 🚀 How to Deploy on LKE
 
-1. **Start your cluster** (e.g., Minikube, EKS, GKE. In my case i used Linode k8s cluster(LKE)):
+1. **Create your LKE cluster** from the [Linode Cloud Manager](https://cloud.linode.com/kubernetes/clusters)
+
+2. **Download your kubeconfig** from the LKE dashboard and configure access:
 ```bash
-minikube start
+export KUBECONFIG=~/Downloads/lke-kubeconfig.yaml
 ```
 
-2. **Create a namespace**:
+3. **Create a namespace**:
 ```bash
 kubectl create namespace microservices
 ```
 
-3. **Apply all manifest files**:
+4. **Apply all manifest files**:
 ```bash
 kubectl apply -f manifests/ -n microservices
 ```
 
-4. **Verify all pods**:
+5. **Verify all pods**:
 ```bash
 kubectl get pods -n microservices
 ```
 
-5. **Access the app** (NodePort):
+6. **Expose the frontend service** (via LoadBalancer or Ingress):
+
+If using LoadBalancer:
+```yaml
+spec:
+  type: LoadBalancer
+```
+Then:
 ```bash
-minikube service frontend -n microservices
+kubectl get svc frontend -n microservices
 ```
 
 ---
 
 ## 🧠 Notes
 
-- All services use `ClusterIP` except `frontend`, which is exposed via `NodePort`
+- All services use `ClusterIP` except `frontend`, which is exposed via `LoadBalancer` in LKE
 - Redis runs as a sidecar backend for `cartservice`
 - Some services require specific env vars (e.g., `SHOPPING_ASSISTANT_SERVICE_ADDR`, `PORT`, etc.)
 - Crashing services may require you to add:
@@ -91,7 +100,7 @@ minikube service frontend -n microservices
 
 ## ✅ Outcome
 
-Once deployed, you'll have a real-world, observable microservices architecture on Kubernetes
+Once deployed, you'll have a real-world, observable microservices architecture running on LKE.
 
 
 
