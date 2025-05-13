@@ -34,7 +34,6 @@ Each service runs in its own Deployment with an associated ClusterIP Service for
   ```bash
   export KUBECONFIG=/path/to/your/lke-kubeconfig.yaml
   ```
-* **Metrics Server**: LKE clusters come with optional metrics support. Make sure it's installed for resource-based autoscaling.
 
 ---
 
