@@ -97,12 +97,11 @@ Each service runs in its own Deployment with an associated ClusterIP Service for
 * `kubectl`
 * A Linode Kubernetes Engine (LKE) cluster
 * Linode CLI or Cloud Manager for node pool and volume management
----
 
 Once deployed, you'll have a real-world, observable microservices architecture running on LKE.
 
 
-
+---
 
 
 
